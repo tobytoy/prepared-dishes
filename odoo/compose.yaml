@@ -17,6 +17,7 @@ services:
     image: postgres:15
     environment:
       - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=${PASSWORD}
       - POSTGRES_PASSWORD_FILE=/run/secrets/postgresql_password
       - POSTGRES_USER=odoo
       - PGDATA=/var/lib/postgresql/data/pgdata
@@ -31,3 +32,6 @@ volumes:
 secrets:
   postgresql_password:
     file: odoo_pg_pass
+
+
+

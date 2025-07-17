@@ -37,5 +37,3 @@ echo ".env 檔案已建立：$ENV_FILE"
 cd "$DEST_DIR" || exit
 docker-compose down -v
 docker-compose up -d --build
-
-
