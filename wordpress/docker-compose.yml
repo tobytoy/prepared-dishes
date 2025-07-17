@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   wordpress:
     image: wordpress:latest
@@ -10,7 +8,12 @@ services:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wpuser
       WORDPRESS_DB_PASSWORD: wppassword
-      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_NAME: wordpress      
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME','https://monkey-space-couscous-5wg4569q5qqf4vqp-8080.app.github.dev');
+        define('WP_SITEURL','https://monkey-space-couscous-5wg4569q5qqf4vqp-8080.app.github.dev');
+      # 真實環境要加
+      # $_SERVER['HTTPS'] = 'on';  
     volumes:
       - wordpress:/var/www/html
     depends_on:
@@ -26,7 +29,7 @@ services:
       MYSQL_ROOT_PASSWORD: rootpassword
     volumes:
       - db:/var/lib/mysql
-    command: --default-authentication-plugin=mysql_native_password
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
 volumes:
   wordpress:
